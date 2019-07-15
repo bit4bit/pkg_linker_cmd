@@ -68,6 +68,7 @@ namespace pkg_linker_cmd
 
 		static void Main(string[] args)
 		{
+
 			Program p = new Program();
 			p.On_start();
 
@@ -143,6 +144,7 @@ namespace pkg_linker_cmd
 				File.Delete("ICON0.PNG");
 			}
 
+		Console.WriteLine(appPath);
 			DirectoryInfo dinfo2 = new DirectoryInfo(appPath);
 			//files = Directory.GetFiles(appPath, "*.pkg");
 			FileInfo[] Files2 = dinfo2.GetFiles("*.Dec");
@@ -236,6 +238,7 @@ namespace pkg_linker_cmd
 				if (pkgtype != "")
 				{
 					s = file.ToString();
+					Console.WriteLine(s);
 					if (s != "Package_List.pkg")
 					{
 						s = s.Replace("&", "and");
@@ -389,7 +392,7 @@ namespace pkg_linker_cmd
 				}
 				nfile.WriteLine("				<Pair key=" + '"' + "icon_rsc" + '"' + "><String>tex_album_icon</String></Pair>");
 				nfile.WriteLine("				<Pair key=\"icon_notation\"><String>WNT_XmbItemAlbum</String></Pair>");
-				nfile.WriteLine("				<Pair key=" + '"' + "title" + '"' + "><String>? Install Packages From Webserver</String></Pair>");
+				nfile.WriteLine("				<Pair key=" + '"' + "title" + '"' + "><String>Packages From Webserver</String></Pair>");
 				nfile.WriteLine("				<Pair key=" + '"' + "info" + '"' + "><String>" + pkg + " on " + ip_port + "</String></Pair>");
 				nfile.WriteLine("				<Pair key=" + '"' + "ingame" + '"' + "><String>disable</String></Pair>\n			</Table>\n		</Attributes>\n			<Items>\n			<Query ");
 				nfile.WriteLine("				class=" + '"' + "type:x-xmb/folder-pixmap" + '"');
@@ -557,7 +560,7 @@ namespace pkg_linker_cmd
 							{
 								nfile.WriteLine("				<Pair key=" + '"' + "icon" + '"' + "><String>" + ipd + "download.png</String></Pair>");
 							}
-							nfile.WriteLine("				<Pair key=" + '"' + "title" + '"' + "><String>" + s + "</String></Pair>");
+							nfile.WriteLine("				<Pair key=" + '"' + "title" + '"' + "><String>" + file.Name + "</String></Pair>");
 							nfile.WriteLine("				<Pair key=" + '"' + "info" + '"' + "><String>" + scids + "   [" + pkgtype + "]   " + sz + "</String></Pair>");
 							nfile.WriteLine(" 			</Table>");
 
@@ -702,8 +705,8 @@ namespace pkg_linker_cmd
 							nfile.WriteLine("		<Attributes>");
 							nfile.WriteLine("			<Table key=" + '"' + "link" + t + '"' + ">");
 							nfile.WriteLine("				<Pair key=" + '"' + "info" + '"' + "><String>net_package_install</String></Pair>");
-							nfile.WriteLine("				<Pair key=" + '"' + "pkg_src" + '"' + "><String>http://" + ip_port + "/" + file + "</String></Pair>");
-							nfile.WriteLine("				<Pair key=" + '"' + "pkg_src_qa" + '"' + "><String>http://" + ip_port + "/" + file + "</String></Pair>");
+							nfile.WriteLine("				<Pair key=" + '"' + "pkg_src" + '"' + "><String>http://" + ip_port + "/" + file.Name + "</String></Pair>");
+							nfile.WriteLine("				<Pair key=" + '"' + "pkg_src_qa" + '"' + "><String>http://" + ip_port + "/" + file.Name + "</String></Pair>");
 							nfile.WriteLine("				<Pair key=" + '"' + "content_name" + '"' + "><String>pkg_install_pc</String></Pair>");
 							nfile.WriteLine("				<Pair key=" + '"' + "content_id" + '"' + "><String>" + scid + "</String></Pair>");
 							if (File.Exists("bin/icons/" + imn))
